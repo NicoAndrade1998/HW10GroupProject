@@ -10,6 +10,40 @@ let create_job_list jobCount resultLis =
     let rnd = Random()
     List.init jobCount (fun _ -> rnd.Next(1, 100))
 
+//Queue that keeps track of the front for dequeue and the back for queue calls
+type Queue<'a> =
+    { mutable front: 'a list
+      mutable back: 'a list }
+
+    member q.enqueue item =
+        q.back <- item :: q.back
+
+    member q.dequeue () =
+        match q.front with
+        | [] ->
+            let reversed = List.rev q.back
+            q.back <- []
+            match reversed with
+            | [] -> None
+            | hd :: tl ->
+                q.front <- tl
+                Some hd
+        | hd :: tl ->
+            q.front <- tl
+            Some hd
+
+let q = { front = []; back = [] }
+q.enqueue 23
+q.enqueue 1
+q.enqueue 7
+printfn "%A" (q.dequeue())
+printfn "%A" (q.dequeue())
+printfn "%A" (q.dequeue())
+//printfn "%d" (Option.defaultValue 0 (q.dequeue()))
+//printfn "%d" (Option.defaultValue 0 (q.dequeue()))
+//printfn "%d" (Option.defaultValue 0 (q.dequeue()))
+
+
 
 let main =
     let lis = create_job_list 10 0
