@@ -51,12 +51,26 @@ let q = { front = []; back = [] }
  * 3. <third thing here>
  *)
 let main =
-    let lis = create_job_list 10 0
+    //let lis = create_job_list 10 0
+    let lis = [3; 4; 6; 1; 9; 2; 5; 6;]
     printfn "Generated List: %A" lis
-    for i in 0 .. 9 do
-        q.enqueue lis[i]
-    for i in 1 .. 10 do
-        printfn "%A" (q.dequeue())
+    for i in 0 .. 7 do
+        if lis[i] % 2 = 1 then
+            q.enqueue lis[i]
+            printf "Added task No. %d into the job queue" lis[i]
+            printf "   Remaining List:" 
+            for x in (i+1) .. 7 do
+                printf "%d " lis[x]
+            printf "\n"
+        else
+            //if q.dequeue() != None then
+            printf "Do job %A now" (q.dequeue())
+            printf "   Remaining List:" 
+            for x in (i+1) .. 7 do
+                printf "%d " lis[x]
+            printf "\n"
+    //for i in 1 .. 10 do
+        //printfn "%A" (q.dequeue())
    
     
 
