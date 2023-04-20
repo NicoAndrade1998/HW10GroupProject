@@ -64,11 +64,17 @@ let main =
             printf "\n"
         else
             //if q.dequeue() != None then
-            printf "Do job %A now" (q.dequeue())
-            printf "   Remaining List:" 
-            for x in (i+1) .. 7 do
-                printf "%d " lis[x]
-            printf "\n"
+            match q.dequeue() with
+            | Some job ->
+                printf "Do job %A now" job
+                printf "   Remaining List:" 
+                for x in (i+1) .. 7 do
+                    printf "%d " lis[x]
+                printf "\n"
+            | None ->
+                printf "no more jobs to do right now"
+                printf "\n"
+            
     //for i in 1 .. 10 do
         //printfn "%A" (q.dequeue())
    
