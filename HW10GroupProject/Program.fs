@@ -33,12 +33,12 @@ type Queue<'a> =
             Some hd
 
 let q = { front = []; back = [] }
-q.enqueue 23
-q.enqueue 1
-q.enqueue 7
-printfn "%A" (q.dequeue())
-printfn "%A" (q.dequeue())
-printfn "%A" (q.dequeue())
+//q.enqueue 23
+//q.enqueue 1
+//q.enqueue 7
+//printfn "%A" (q.dequeue())
+//printfn "%A" (q.dequeue())
+//printfn "%A" (q.dequeue())
 //printfn "%d" (Option.defaultValue 0 (q.dequeue()))
 //printfn "%d" (Option.defaultValue 0 (q.dequeue()))
 //printfn "%d" (Option.defaultValue 0 (q.dequeue()))
@@ -46,10 +46,19 @@ printfn "%A" (q.dequeue())
 
 
 
-
+(* 1. Create a List of random Numbers
+ * 2. Add these numbers to a Queue
+ * 3. <third thing here>
+ *)
 let main =
     let lis = create_job_list 10 0
-    printfn "Remaining List: %A" lis
+    printfn "Generated List: %A" lis
+    for i in 0 .. 9 do
+        q.enqueue lis[i]
+    for i in 1 .. 10 do
+        printfn "%A" (q.dequeue())
+   
+    
 
 
 
