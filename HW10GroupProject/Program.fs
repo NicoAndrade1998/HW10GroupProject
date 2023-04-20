@@ -45,6 +45,8 @@ printfn "%A" (q.dequeue())
 
 
 
+
+
 let main =
     let lis = create_job_list 10 0
     printfn "Remaining List: %A" lis
@@ -58,7 +60,17 @@ let main =
 
 //Test commit. Saul
 
-
+// compare_lists is not currently being used, I have attached it for reference purposes -Nico
+(* Compares two inputted lists to see if they are equal
+ * If both lists are empty, evaluates true
+ * If one list is longer than the other, evaluates true
+ * If both lists have an element for the index, check if they are equal and if each subsequent eval is true. *)
+let rec compare_lists l1 l2 =
+    match l1, l2 with
+    | [] , [] -> true
+    | [] , _  -> false
+    | _ , []  -> false
+    | x::xs, y::ys -> x = y && compare_lists xs ys
 
 
 
